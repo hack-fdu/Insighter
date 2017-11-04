@@ -72,8 +72,9 @@ def personalInsight(text):
     }
 
     params = {
-        'version': '2017-10-13'
+        'version':'2017-10-13'
     }
+
     print (text)
     # data = open(textFilename, 'r', encoding='utf-8').read()
     ret = requests.post(api_url, params=params, data=text, headers=headers, auth=auth)

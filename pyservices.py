@@ -12,7 +12,7 @@ def index():
 def getWeibo():
     user_id = request.args.get('userid', default='2348648143', type=str)
     text = weiboCrawler.getWeibo(user_id, maxPages=10)
-    res = api.personalInsight(text.encode('utf-8'))
+    res = api.personalInsight(text.encode("utf-8"))
     return jsonify(res)
 
 @app.route('/personalInsight', methods=['GET', 'POST'])
@@ -20,7 +20,7 @@ def personalInsight():
     if request.method == 'GET':
         text = request.args.get('text', default='', type=str)
     elif request.method == 'POST':
-        text = request.files['file'].read()
+        text = request.form['file']
         print(text)
     else:
         text = ''
