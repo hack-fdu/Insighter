@@ -19,7 +19,7 @@ def personalInsight():
     if request.method == 'GET':
         text = request.args.get('text', default='', type=str)
     elif request.method == 'POST':
-        text = request.form.get('text')
+        text = request.form.get('file')
     else:
         text = ''
     ret = api.personalInsight(text)
