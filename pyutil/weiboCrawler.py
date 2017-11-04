@@ -5,6 +5,7 @@ import re
 from bs4 import BeautifulSoup
 
 def getWeibo(user_id, maxPages=5):
+    texts = []
     cookie = {
         "Cookie": "SCF=AiRAchUSpkqXd7eCfjSUvWDx7x-SA9m6ggC3JdCT7hdfRHpypezI9uy25nmdGHBxazqHJrWZpiCuPNI1XskQMBU.; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5Yu6VdSKJ9vm8rP7elu0UM5JpX5K-hUgL.Fo-N1h271h-ESK22dJLoI7DGdsvEwH8fqgLj; _T_WM=b5bc6005f2a81fa5f26c0ee44ec80293; SUB=_2A250-QacDeRhGeNJ41MR-CvOzj2IHXVUBarUrDV6PUJbkdBeLRfwkW1-pSi5PQl5M2o0HYB9FzSzrezpvg..; SUHB=0nluE29Qcq629A; SSOLoginState=1509783244"}
     pages = maxPages
@@ -23,9 +24,10 @@ def getWeibo(user_id, maxPages=5):
             if per:
                 for a_tag in per("a"):
                     a_tag.extract()
-                print(per.text)
+                texts.append(per.text)
                 f = open(path + '.txt', 'a+', encoding='utf-8')
                 f.write(per.text + "\n")
+    return '\n'.join(texts)
             #    regular1=re.compile(r"\d+")
             #    pgs = regular1.findall(per.text)  #每条微博对应的评论数
 
