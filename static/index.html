@@ -6,9 +6,14 @@
 </head>
 <body>
 <div id="test">
-    <input type="text" name="user_id" v-model="userid">
-    <input type="file" name="file" id="file" ref="file">
-    <button type="submit" @click="uploadID">提交</button>
+    <div>
+        <input type="text" name="user_id" v-model="userid">
+        <button type="submit" @click="uploadUser">提交</button>
+    </div>
+    <div>
+        <input type="file" name="file" id="file" ref="file">
+        <button type="submit" @click="uploadFile">提交</button>
+    </div>
 </div>
 <script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../node_modules/axios/dist/axios.min.js"></script>

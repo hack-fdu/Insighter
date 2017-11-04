@@ -68,12 +68,13 @@ def personalInsight(text):
     auth = ('cc9a4bfe-9c09-4407-8618-d18ef6271fbd', 'jy7op5MHFDbi')
 
     headers = {
-        'Content-Type': 'text/plain;charset=utf-8',
+        'Content-Type': 'text/plain'
     }
 
     params = (
-        ('version', '2017-10-13'),
+        ('version', '2017-10-13')
     )
+    print (text)
     # data = open(textFilename, 'r', encoding='utf-8').read()
     ret = requests.post(api_url, params=params, data=text, headers=headers, auth=auth)
 
