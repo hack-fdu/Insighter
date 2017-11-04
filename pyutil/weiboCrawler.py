@@ -1,32 +1,31 @@
 # encoding=utf-8
-
+import sys
 import requests
 import re
 from bs4 import BeautifulSoup
 
-user_id = 2348648143
-# user_id=1669879400
-cookie = {
-    "Cookie": "SCF=AiRAchUSpkqXd7eCfjSUvWDx7x-SA9m6ggC3JdCT7hdfRHpypezI9uy25nmdGHBxazqHJrWZpiCuPNI1XskQMBU.; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5Yu6VdSKJ9vm8rP7elu0UM5JpX5K-hUgL.Fo-N1h271h-ESK22dJLoI7DGdsvEwH8fqgLj; _T_WM=b5bc6005f2a81fa5f26c0ee44ec80293; SUB=_2A250-QacDeRhGeNJ41MR-CvOzj2IHXVUBarUrDV6PUJbkdBeLRfwkW1-pSi5PQl5M2o0HYB9FzSzrezpvg..; SUHB=0nluE29Qcq629A; SSOLoginState=1509783244"}
-pages = 5
-for page in range(pages):
-    url = 'http://weibo.cn/u/%d?page=%d&filter=0' % (user_id, page)
-    path = str(user_id)
-    html = requests.get(url, cookies=cookie)
+def getWeibo(user_id, maxPages=5):
+    cookie = {
+        "Cookie": "SCF=AiRAchUSpkqXd7eCfjSUvWDx7x-SA9m6ggC3JdCT7hdfRHpypezI9uy25nmdGHBxazqHJrWZpiCuPNI1XskQMBU.; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5Yu6VdSKJ9vm8rP7elu0UM5JpX5K-hUgL.Fo-N1h271h-ESK22dJLoI7DGdsvEwH8fqgLj; _T_WM=b5bc6005f2a81fa5f26c0ee44ec80293; SUB=_2A250-QacDeRhGeNJ41MR-CvOzj2IHXVUBarUrDV6PUJbkdBeLRfwkW1-pSi5PQl5M2o0HYB9FzSzrezpvg..; SUHB=0nluE29Qcq629A; SSOLoginState=1509783244"}
+    pages = maxPages
+    for page in range(pages):
+        url = 'http://weibo.cn/u/%s?page=%d&filter=0' % (str(user_id), page)
+        path = str(user_id)
+        html = requests.get(url, cookies=cookie)
 
-    Soup = BeautifulSoup(html.text, 'html.parser')
+        Soup = BeautifulSoup(html.text, 'html.parser')
 
-    alla = Soup.find_all("div", class_="c")  # 所有的微博
+        alla = Soup.find_all("div", class_="c")  # 所有的微博
 
-    for a in alla:
-        per = a.find("span", class_="ctt")  # 每条微博
+        for a in alla:
+            per = a.find("span", class_="ctt")  # 每条微博
 
-        if per:
-            for a_tag in per("a"):
-                a_tag.extract()
-            print(per.text)
-            f = open(path + '.txt', 'a+', encoding='utf-8')
-            f.write(per.text + "\n")
+            if per:
+                for a_tag in per("a"):
+                    a_tag.extract()
+                print(per.text)
+                f = open(path + '.txt', 'a+', encoding='utf-8')
+                f.write(per.text + "\n")
             #    regular1=re.compile(r"\d+")
             #    pgs = regular1.findall(per.text)  #每条微博对应的评论数
 
@@ -67,3 +66,7 @@ for page in range(pages):
             #               name="comment"
             #               f = open(name+'.txt', 'a+',encoding="utf-8")
             #               f.write(newtime.text[:19]+"     "+newcontent.text+"\n")
+
+if __name__ == '__main__':
+    userID = sys.argv[1]
+    getWeibo(userID)
