@@ -8,8 +8,7 @@ def nlu(text):
     data = {
         "text": text,
         "version": "2017-02-27",
-        "features": "sentiment,keywords",
-        "keywords.sentiment": "true"
+        "features": "sentiment",
     }
 
     ret = requests.get(api_url, params=data, auth=auth)
@@ -83,7 +82,7 @@ def personalInsight(text):
 
 
 if __name__ == '__main__':
-    # print(nlu('Understand the contents of images. Create custom classifiers to develop smart applications'))
+    print(nlu('Understand the contents of images. Create custom classifiers to develop smart applications'))
     # print(speech2text('hello_world.wav'))
     # print(classifyImage('test.jpg'))
     # print(detectingFaces('test.jpg'))

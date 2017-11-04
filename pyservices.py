@@ -11,9 +11,24 @@ def index():
 @app.route('/getWeibo', methods=['GET'])
 def getWeibo():
     user_id = request.args.get('userid', default='2348648143', type=str)
-    text = weiboCrawler.getWeibo(user_id, maxPages=10)
+    texts, dates = weiboCrawler.getWeibo(user_id, maxPages=10)
+    text = '\n'.join(texts)
     res = api.personalInsight(text.encode("utf-8"))
     return jsonify(res)
+
+@app.route('/getSentiment', methods=['GET'])
+def getSentiment():
+    user_id = request.args.get('userid', default='2348648143', type=str)
+    texts, dates = weiboCrawler.getWeibo(user_id, maxPages=10)
+    textdateList = list(zip(texts, dates))
+    sentimentList = []
+    for textdate in textdateList:
+        ret = api.nlu(textdate[0])
+
+        if 'sentiment' in ret:
+            print(ret)
+            sentimentList.append((textdate[1], ret['sentiment']['document']))
+    return jsonify({'dates': dates, 'sentiments': sentimentList})
 
 @app.route('/personalInsight', methods=['GET', 'POST'])
 def personalInsight():
