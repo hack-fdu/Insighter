@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from pyutil import weiboCrawler
 from pyutil import api
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 def index():
@@ -19,7 +19,7 @@ def personalInsight():
     if request.method == 'GET':
         text = request.args.get('text', default='', type=str)
     elif request.method == 'POST':
-        text = request.files.get('text', default=None)
+        text = request.form.get('text')
     else:
         text = ''
     ret = api.personalInsight(text)
