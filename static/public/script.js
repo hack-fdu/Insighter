@@ -158,8 +158,8 @@ var app = new Vue({
                               ]
                           },
                           title: {
-                              text: 'The App World',
-                              subtext: 'from global web index',
+                              text: 'What do you need',
+                              subtext: 'according to your personality',
                               x: 'center'
                           },
                           toolbox: {
@@ -419,10 +419,10 @@ var app = new Vue({
                                     min: -1,
                                     max: 1,
                                     splitNumber: 10,
-                                    name: '抑郁程度',
+                                    name: '健康程度',
                                     type: 'gauge',
-                                    detail: {formatter:'{value}%'},
-                                    data: [{value: depression.toFixed(2), name: '抑郁程度'}]
+                                    detail: {formatter:'{value}'},
+                                    data: [{value: depression.toFixed(2), name: '健康程度'}]
                                 }
                             ]
                         };

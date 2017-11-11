@@ -8,7 +8,7 @@ def getWeibo(user_id, maxPages=5):
     texts = []
     dates = []
     cookie = {
-        "Cookie": "SCF=AiRAchUSpkqXd7eCfjSUvWDx7x-SA9m6ggC3JdCT7hdfRHpypezI9uy25nmdGHBxazqHJrWZpiCuPNI1XskQMBU.; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5Yu6VdSKJ9vm8rP7elu0UM5JpX5K-hUgL.Fo-N1h271h-ESK22dJLoI7DGdsvEwH8fqgLj; _T_WM=b5bc6005f2a81fa5f26c0ee44ec80293; SUB=_2A250-QacDeRhGeNJ41MR-CvOzj2IHXVUBarUrDV6PUJbkdBeLRfwkW1-pSi5PQl5M2o0HYB9FzSzrezpvg..; SUHB=0nluE29Qcq629A; SSOLoginState=1509783244"}
+        "Cookie": "_T_WM=0045eaef3fcff94824ed9fdb310c6ce8; ALF=1512655030; SCF=Ag1QDUJKGrJywF5TvCRqCNQ_35Fu2vx2O7DF5AQ6itdYsklFtlLlht1T8u8yM6m6YrEienlWPrvc1M2rLRldjh0.; SUB=_2A253Bcu_DeRhGeBP7lsV9y_EyTqIHXVUCdX3rDV6PUJbktBeLUfmkW0x5T52j5rCjDv_FH6mzj2LkV91TQ..; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WFTQoJToJ.uqnQsLMiaDgGM5JpX5K-hUgL.FoqpSK.XS02Reoq2dJLoIpjLxKBLB.2L1K-LxKML12qLB-BLxKML12qLB-Bt; SUHB=09PNk6GHSnwXO-; SSOLoginState=1510063087"}
     pages = maxPages
     for page in range(pages):
         url = 'http://weibo.cn/u/%s?page=%d&filter=0' % (str(user_id), page)
