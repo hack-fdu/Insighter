@@ -4,7 +4,7 @@ Insighter is created at HACKxFDU 2017.
 
 ## Features
 
-This project aims at analyzing people's mental health according to his latest news online.
+This project can analyze people's mental health and figure out an intuitive health number according to their latest news online.It aims to discover those who have mental illnesses in time.
 
 ## Tech
 
